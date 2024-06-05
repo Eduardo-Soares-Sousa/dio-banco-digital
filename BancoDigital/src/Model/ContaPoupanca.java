@@ -1,10 +1,18 @@
 package Model;
 
 public class ContaPoupanca extends Conta {
-
-    public ContaPoupanca(String nomeBanco, int agencia, int numeroConta, double saldo) {
-        super(nomeBanco, agencia, numeroConta, saldo);
+    public ContaPoupanca() {
+        super();
     }
 
-    
+    @Override
+    public void imprimirDadosConta() {
+        System.out.println("=== Extrato Conta Poupança ===");
+        super.imprimirInfosConta();
+    }
+
+    @Override
+    public String toString() {
+        return "Conta Poupanca";
+    }
 }
