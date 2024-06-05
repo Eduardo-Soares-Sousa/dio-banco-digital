@@ -1,8 +1,18 @@
 package Model;
 
 public class ContaCorrente extends Conta {
+    public ContaCorrente() {
+        super();
+    }
 
-    public ContaCorrente(String nomeBanco, int agencia, int numeroConta, double saldo) {
-        super(nomeBanco, agencia, numeroConta, saldo);
+    @Override
+    public void imprimirDadosConta() {
+        System.out.println("=== Extrato Conta Corrente ===");
+        super.imprimirInfosConta();
+    }
+
+    @Override
+    public String toString() {
+        return "Conta Corrente";
     }
 }
