@@ -1,5 +1,5 @@
 package Model;
 
-public enum TipoDeConta {
+public enum TipoDaConta {
     CORRENTE, POUPANCA;
 }
