@@ -2,20 +2,20 @@ package Model;
 
 import java.util.Objects;
 
-public class Cliente {
+public class Cliente implements Comparable<Cliente> {
     private String nome;
     private String cpf;
     private int idade;
     private Conta conta;
 
-    public Cliente(String nome, String cpf, int idade, TipoDaConta tipoDaConta, double saldo) {
+    public Cliente(String nome, String cpf, int idade, TipoDaConta tipoDaConta) {
         this.nome = nome;
         this.cpf = cpf;
         this.idade = idade;
         if(tipoDaConta == TipoDaConta.CORRENTE){
-            this.conta = new ContaCorrente(saldo);
+            this.conta = new ContaCorrente();
         }else if(tipoDaConta == TipoDaConta.POUPANCA){
-            this.conta = new ContaPoupanca(saldo);
+            this.conta = new ContaPoupanca();
         }
     }
 
@@ -57,7 +57,12 @@ public class Cliente {
                 "nome='" + nome + '\'' +
                 ", cpf='" + cpf + '\'' +
                 ", idade=" + idade +
-                ", conta=" + conta +
+                ", tipo de conta=" + conta +
                 '}';
+    }
+
+    @Override
+    public int compareTo(Cliente o) {
+        return nome.compareTo(o.getNome());
     }
 }
