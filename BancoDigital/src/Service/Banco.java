@@ -15,20 +15,27 @@ public class Banco {
         this.clienteList = new ArrayList<>();
     }
 
-    public void adicionarCliente(String nome, String cpf, int idade, TipoDaConta tipoDaConta, double saldo) {
-        clienteList.add(new Cliente(nome, cpf, idade, tipoDaConta, saldo));
+    public void adicionarCliente(String nome, String cpf, int idade, TipoDaConta tipoDaConta) {
+        clienteList.add(new Cliente(nome, cpf, idade, tipoDaConta));
     }
 
     public void removerCliente(String cpf) {
+        boolean deuCerto = false;
         Cliente clienteRemover = null;
         if(!clienteList.isEmpty()){
             for(Cliente cliente : clienteList){
-                if(cliente.getCpf() == cpf){
+                if(cliente.getCpf().equalsIgnoreCase(cpf)){
                     clienteRemover = cliente;
+                    clienteList.remove(clienteRemover);
+                    deuCerto = true;
                     break;
                 }
             }
-            clienteList.remove(clienteRemover);
+            if(deuCerto != false){
+                System.out.println("Cliente: " + clienteRemover.getNome() + ", CPF: " + clienteRemover.getCpf() + " removido com sucesso!");
+            }else{
+                System.out.println("Não há cliente com esse CPF!");
+            }
         }else{
             throw new RuntimeException("A lista de clientes está vazia!");
         }
@@ -48,10 +55,11 @@ public class Banco {
         }
 
         if(clienteEncontrado == null){
-            System.out.println("Não cliente com esse cpf!");
+            System.out.println("Não há cliente com esse CPF!");
             return null;
         }
-        
+
+        System.out.println(clienteEncontrado);
         return clienteEncontrado;
     }
 
@@ -63,6 +71,25 @@ public class Banco {
             }
         }else{
             throw new RuntimeException("A lista de clientes está vazia!");
+        }
+    }
+
+    public void dadosContaCliente(String cpf) {
+        boolean deuCerto = false;
+        if(!clienteList.isEmpty()){
+            for(Cliente procurado : clienteList){
+                if(procurado.getCpf().equalsIgnoreCase(cpf)){
+                    procurado.getConta().imprimirInfosConta();
+                    deuCerto = true;
+                    break;
+                }
+            }
+        }else{
+            throw new RuntimeException("A lista de clientes está vazia!");
+        }
+
+        if(!deuCerto){
+            System.out.println("Não há cliente com esse CPF!");
         }
     }
 
