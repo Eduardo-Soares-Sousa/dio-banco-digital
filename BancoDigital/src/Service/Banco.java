@@ -9,10 +9,15 @@ import java.util.Set;
 import java.util.TreeSet;
 
 public class Banco {
+    private static final String SENHA_ADMINISTRADOR = "Admin123";
     List<Cliente> clienteList;
 
     public Banco() {
         this.clienteList = new ArrayList<>();
+    }
+
+    public boolean verificarSenhaAdministrador(String senha) {
+        return SENHA_ADMINISTRADOR.equals(senha);
     }
 
     public void adicionarCliente(String nome, String cpf, int idade, TipoDaConta tipoDaConta) {
